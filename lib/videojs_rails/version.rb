@@ -1,3 +1,3 @@
 module VideojsRails
-  VERSION = '4.12.15'
+  VERSION = '5.11.6'
 end
