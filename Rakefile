@@ -71,6 +71,7 @@ namespace :videojs do
 
     sh "git add ."
     sh "git commit -m 'Update to video.js v#{version}'"
+    sh "git tag -a v#{version}"
     puts "* Done.  Now run 'rake release' to push to rubygems."
   end
 end
