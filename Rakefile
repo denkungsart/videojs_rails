@@ -27,19 +27,6 @@ namespace :videojs do
       sh "cp #{dist_dir}/font/* #{VIDEO_JS_RAILS_HOME}/vendor/assets/fonts/"
       sh "cp #{dist_dir}/video-js.css #{VIDEO_JS_RAILS_HOME}/vendor/assets/stylesheets/"
       sh "cp #{dist_dir}/video.js #{VIDEO_JS_RAILS_HOME}/vendor/assets/javascripts/"
-
-      # Now, perform some asset_path and other substitutions
-      puts
-      puts "* Updating videojs-css.erb for Rails asset pipeline"
-      css = "#{VIDEO_JS_RAILS_HOME}/vendor/assets/stylesheets/video-js.css"
-      File.open("#{css}.erb", 'w') do |out|
-        File.foreach(css) do |line|
-          # Handle fonts => url('<%= asset_path('vjs.woff') %>') format('woff')
-          out <<
-            line.gsub(/url\((['"]*)font\/(VideoJS[^\)]+)\)(\s+format[^\)]+\))?/, 'url(<%= asset_path(\1\2) %>)\3')
-        end
-      end
-      sh "rm -f #{css}"
     end
   end
 
